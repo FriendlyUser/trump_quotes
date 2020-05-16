@@ -37,7 +37,10 @@ platform :android do
 
   desc "Deploy a new version to the Google Play"
   lane :deploy do
-    gradle(task: "clean assembleRelease")
-    upload_to_play_store
+    version_info = flutter_version(
+      pubspec_location: "../pubspec.yaml",
+    )
+    puts version_info
+    upload_to_play_store(track: 'beta', track_promote_to: 'production', version_code: version_code)
   end
 end
