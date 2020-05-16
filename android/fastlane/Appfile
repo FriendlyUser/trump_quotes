@@ -1,0 +1,2 @@
+json_key_file("ocr-server-238704-1b08ee48b859.json") # Path to the json secret file - Follow https://docs.fastlane.tools/actions/supply/#setup to get one
+package_name("com.friendlyuser.trump_quotes") # e.g. com.krausefx.app
