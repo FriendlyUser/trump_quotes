@@ -32,7 +32,6 @@ jobs:
     - run: echo $KEY_PROPERTIES | base64 --decode > android/key.properties
       name: Decoding Key Properties
     - run: echo $OCR_SERVER | base64 --decode > android/ocr-server-238704-1b08ee48b859.json
-    - run: ls android
     # Get flutter dependencies.
     - run: flutter pub get
     
