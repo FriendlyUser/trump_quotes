@@ -4,7 +4,9 @@ name: Flutter CI
 
 on: push
     
-# on: push    # Default will running for every branch.
+env:
+    KEY_PROPERTIES: ${{ secrets.KEY_PROPERTIES }}
+    TRUMP_QUOTES_JKS: ${{ secrets.TRUMP_QUOTES_JKS }}
     
 jobs:
   build:
@@ -48,6 +50,3 @@ jobs:
       with:
         name: release-apk
         path: build/app/outputs/apk/release/app-release.apk
-  env:
-    KEY_PROPERTIES: ${{ secrets.KEY_PROPERTIES }}
-    TRUMP_QUOTES_JKS: ${{ secrets.TRUMP_QUOTES_JKS }}
