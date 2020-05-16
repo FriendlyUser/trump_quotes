@@ -1,4 +1,4 @@
-package com.example.trump_quotes
+package com.gfleet.trump_quotes
 
 import io.flutter.embedding.android.FlutterActivity
 
