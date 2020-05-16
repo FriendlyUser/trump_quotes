@@ -29,6 +29,8 @@ jobs:
     # load the files from base64 encoded secrets
     - run: echo $TRUMP_QUOTES_JKS | base64 --decode > android/trump_quotes.jks
       name: Decoding Trump Quotes File
+    - run: echo $TRUMP_QUOTES_JKS | base64 --decode > trump_quotes.jks
+      name: Decoding Trump Quotes File
     - run: echo $KEY_PROPERTIES | base64 --decode > android/key.properties
       name: Decoding Key Properties
     - run: echo $OCR_SERVER | base64 --decode > android/ocr-server-238704-1b08ee48b859.json
