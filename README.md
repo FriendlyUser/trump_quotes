@@ -19,3 +19,6 @@ samples, guidance on mobile development, and a full API reference.
 ### VS CODE REMOTE 
 
 sudo chown -R stude flutter
+
+
+Fastlane is used to upload the files to the google play store.
