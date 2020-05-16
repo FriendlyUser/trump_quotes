@@ -2,18 +2,20 @@ name: Trump Quotes
 
 # This workflow is triggered on pushes to the repository.
 
+
+# Git workflow is based on develop/master
+# All feature branches are merged into develop and then merging
+# into master auto deploys
 on: 
   push:
     branches:
       - develop
       - master
-    tags: 
-      - v*
     
 env:
     KEY_PROPERTIES: ${{ secrets.KEY_PROPERTIES }}
     TRUMP_QUOTES_JKS: ${{ secrets.TRUMP_QUOTES_JKS }}
-    OCR_SERVER: ${{ secrets.OCR_SERVER }} 
+    OCR_SERVER: ${{ secrets.OCR_SERVER }}
     
 jobs:
   build:
@@ -30,17 +32,9 @@ jobs:
     # Setup the flutter environment.
     - uses: subosito/flutter-action@v1
       with:
-        channel: 'beta' # 'dev', 'alpha', default to: 'stable'
+        channel: 'stable' # 'dev', 'alpha', default to: 'stable'
         # flutter-version: '1.12.x' # you can also specify exact version of flutter
-    # Set envs based on branch
-    - name: Set env to staging
-      if: endsWith(github.ref, '/develop')
-      run: |
-        echo "::set-env name=LANE::beta"
-    - name: Set env to production
-      if: endsWith(github.ref, '/master')
-      run: |
-        echo "::set-env name=LANE::deploy"
+
     # load the files from base64 encoded secrets
     - run: echo $TRUMP_QUOTES_JKS | base64 --decode > android/app/trump_quotes.jks
       name: Decoding Trump Quotes File
@@ -73,5 +67,17 @@ jobs:
       # Fastlane
     - uses: maierj/fastlane-action@v1.4.0
       with:
-        lane: $LANE
+        lane: test
+        subdirectory: 'android'
+
+    - uses: maierj/fastlane-action@v1.4.0
+      if: endsWith(github.ref, '/develop')
+      with:
+        lane: beta
+        subdirectory: 'android'
+
+    - uses: maierj/fastlane-action@v1.4.0
+      if: endsWith(github.ref, '/master')
+      with:
+        lane: master
         subdirectory: 'android'
