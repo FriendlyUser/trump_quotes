@@ -6,11 +6,7 @@ name: Trump Quotes
 # Git workflow is based on develop/master
 # All feature branches are merged into develop and then merging
 # into master auto deploys
-on: 
-  push:
-    branches:
-      - develop
-      - master
+on: push
     
 env:
     KEY_PROPERTIES: ${{ secrets.KEY_PROPERTIES }}
@@ -79,5 +75,5 @@ jobs:
     - uses: maierj/fastlane-action@v1.4.0
       if: endsWith(github.ref, '/master')
       with:
-        lane: master
+        lane: deploy
         subdirectory: 'android'
