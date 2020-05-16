@@ -23,15 +23,31 @@ platform :android do
 
   desc "New Beta Build"
   lane :beta do
+    changelog_from_git_commits(
+      pretty: "- (%ae) %s",# Optional, lets you provide a custom format to apply to each commit when generating the changelog text
+      date_format: "short",# Optional, lets you provide an additional date format to dates within the pretty-formatted string
+      match_lightweight_tag: false,  # Optional, lets you ignore lightweight (non-annotated) tags when searching for the last tag
+      merge_commit_filtering: "exclude_merges", # Optional, lets you filter out merge commits
+      path: "../"
+    )
     # Adjust the `build_type` and `flavor` params as needed to build the right APK for your setup
     upload_to_play_store(track: 'beta')
 
     # ...
   end
 
-  desc "Deploy a new version to the Google Play"
+  desc "Deploy live version"
   lane :deploy do
-    gradle(task: "clean assembleRelease")
-    upload_to_play_store
+    changelog_from_git_commits(
+      pretty: "- (%ae) %s",# Optional, lets you provide a custom format to apply to each commit when generating the changelog text
+      date_format: "short",# Optional, lets you provide an additional date format to dates within the pretty-formatted string
+      match_lightweight_tag: false,  # Optional, lets you ignore lightweight (non-annotated) tags when searching for the last tag
+      merge_commit_filtering: "exclude_merges", # Optional, lets you filter out merge commits
+      path: "../"
+    )
+    upload_to_play_store(
+      track: "beta",
+      track_promote_to: "production"
+    )
   end
 end
