@@ -23,8 +23,14 @@ platform :android do
 
   desc "New Beta Build"
   lane :beta do
+    version_info = flutter_version(
+      pubspec_location: "../pubspec.yaml",
+    )
+    puts version_info
+    # Tests if the version code retrieved from the pubspec.yaml matches
+    version_code = version_info["version_code"]
     # Adjust the `build_type` and `flavor` params as needed to build the right APK for your setup
-    upload_to_play_store(track: 'beta')
+    upload_to_play_store(track: 'beta', version_code: version_code)
 
     # ...
   end
