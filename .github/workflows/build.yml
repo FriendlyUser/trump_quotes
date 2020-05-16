@@ -27,9 +27,7 @@ jobs:
         channel: 'beta' # 'dev', 'alpha', default to: 'stable'
         # flutter-version: '1.12.x' # you can also specify exact version of flutter
     # load the files from base64 encoded secrets
-    - run: echo $TRUMP_QUOTES_JKS | base64 --decode > android/trump_quotes.jks
-      name: Decoding Trump Quotes File
-    - run: echo $TRUMP_QUOTES_JKS | base64 --decode > trump_quotes.jks
+    - run: echo $TRUMP_QUOTES_JKS | base64 --decode > android/app/trump_quotes.jks
       name: Decoding Trump Quotes File
     - run: echo $KEY_PROPERTIES | base64 --decode > android/key.properties
       name: Decoding Key Properties
