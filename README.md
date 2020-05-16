@@ -21,4 +21,8 @@ samples, guidance on mobile development, and a full API reference.
 sudo chown -R stude flutter
 
 
+
+### Notes
 Fastlane is used to upload the files to the google play store.
+
+git tag -a v0.1.0 -m "initial commit with fastlane"
