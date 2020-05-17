@@ -69,21 +69,16 @@ jobs:
     - run: flutter config --enable-web
     # Deploy to github actions
     - run: flutter build web --release
-    - run: |
-        cd build/web
-        git init
-        # type configurations: your user.email and user.name followed lines 
-        # git config --global user.email your_email 
-        # git config --global user.name your_name 
+    - run: | 
         git config --global user.email $EMAIL
         git config --global user.name $USERNAME
         git status
-        # change this remote url for examle your remote url is https://github.com/onatcipli/flutter_web.git then the following:
-        git remote add origin https://$ACCESS_TOKEN@github.com/$GITHUB_REPOSITORY.git
-        git checkout -b gh-pages
-        git add --all
-        git commit -m "update"
-        git push origin gh-pages -f
+    - name: Deploy 🚀
+      uses: JamesIves/github-pages-deploy-action@releases/v3
+      with:
+        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        BRANCH: gh-pages # The branch the action should deploy to.
+        FOLDER: build/web # The folder the action should deploy.
     # Fastlane
     - uses: maierj/fastlane-action@v1.4.0
       with:
