@@ -64,6 +64,8 @@ jobs:
       with:
         name: release-apk
         path: build/app/outputs/apk/release/app-release.apk
+    - run: flutter channel beta
+      name: Web Compliation
     # Web Build
     - run: flutter config --enable-web
     # Deploy to github actions
