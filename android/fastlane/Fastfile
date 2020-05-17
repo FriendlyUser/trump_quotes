@@ -30,8 +30,14 @@ platform :android do
       merge_commit_filtering: "exclude_merges", # Optional, lets you filter out merge commits
       path: "../"
     )
+    version_info = flutter_version(
+      pubspec_location: "../pubspec.yaml",
+    )
+    puts version_info
+    # Tests if the version code retrieved from the pubspec.yaml matches
+    version_code = version_info["version_code"]
     # Adjust the `build_type` and `flavor` params as needed to build the right APK for your setup
-    upload_to_play_store(track: 'beta')
+    upload_to_play_store(track: 'beta', version_code: version_code)
 
     # ...
   end
@@ -45,9 +51,14 @@ platform :android do
       merge_commit_filtering: "exclude_merges", # Optional, lets you filter out merge commits
       path: "../"
     )
+    version_info = flutter_version(
+      pubspec_location: "../pubspec.yaml",
+    )
+    puts version_info
     upload_to_play_store(
-      track: "beta",
-      track_promote_to: "production"
+      track: 'beta',
+      track_promote_to: 'production',
+      version_code: version_code
     )
   end
 end

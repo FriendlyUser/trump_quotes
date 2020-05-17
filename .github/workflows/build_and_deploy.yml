@@ -64,8 +64,6 @@ jobs:
       with:
         name: release-apk
         path: build/app/outputs/apk/release/app-release.apk
-    - run: flutter channel beta
-      name: Web Compliation
     # Web Build
     - run: flutter config --enable-web
     # Deploy to github actions
@@ -80,7 +78,7 @@ jobs:
         git config --global user.name $USERNAME
         git status
         # change this remote url for examle your remote url is https://github.com/onatcipli/flutter_web.git then the following:
-        git remote add origin https://$ACCESS_TOKEN@github.com/$GITHUB_REPOSITORY.git
+        git remote add origin https://${{ACCESS_TOKEN}}@github.com/${{GITHUB_REPOSITORY}}.git
         git checkout -b gh-pages
         git add --all
         git commit -m "update"
