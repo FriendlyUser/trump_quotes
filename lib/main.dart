@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import './about.dart';
+import './pages/about.dart';
 import './transitions/SlideRightRoute.dart';
 
 void main() {
@@ -54,7 +54,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   int _selectedIndex = 0;
-  List<Widget> _pages = [AboutPage(), AboutPage(), AboutPage()];
+  List<Widget> _pages = [AboutPage(), QuotePage(), AboutPage()];
   void _incrementCounter() {
     setState(() {
       // This call to setState tells the Flutter framework that something has
@@ -145,9 +145,9 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   // pushs page to the right destination
-  void _pushPage(BuildContext context, Widget page) {
+  void _pushPage(BuildContext context, Widget nextPage) {
     Navigator.of(context).push(
-      SlideRightRoute(page: page),
+      SlideRightRoute(page: nextPage),
     );
   }
 }
