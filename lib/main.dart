@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './about.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -52,7 +53,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   int _selectedIndex = 0;
-  List<Widget> _pages = [ AboutPage(), AboutPage(), AboutPage()];
+  List<Widget> _pages = [AboutPage(), AboutPage(), AboutPage()];
   void _incrementCounter() {
     setState(() {
       // This call to setState tells the Flutter framework that something has
@@ -141,6 +142,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
+
   // pushs page to the right destination
   void _pushPage(BuildContext context, Widget page) {
     Navigator.of(context).push(
