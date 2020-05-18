@@ -65,19 +65,17 @@ class _QuotePageState extends State<QuotePage> {
     String quote = data.value;
     String createdAt = data.createdAt;
     return Card(
-      child: new Container(
-        padding: new EdgeInsets.all(32.0),
-        child: ListTile(
-          leading: Icon(
-            Icons.mode_comment,
-            size: 56.0,
-          ),
-          title: Text(quote),
-          subtitle: Text(createdAt),
-          trailing: Icon(Icons.more_vert),
-        )
-      )
-    );
+        child: new Container(
+            padding: new EdgeInsets.all(32.0),
+            child: ListTile(
+              leading: Icon(
+                Icons.mode_comment,
+                size: 56.0,
+              ),
+              title: Text(quote),
+              subtitle: Text(createdAt),
+              trailing: Icon(Icons.more_vert),
+            )));
   }
 
   @override
