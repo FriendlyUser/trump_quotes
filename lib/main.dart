@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import './about.dart'
 void main() {
   runApp(MyApp());
 }
@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Trump Quotes',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -51,7 +51,8 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
-
+  int _selectedIndex = 0;
+  List<Widget> _pages = [ AboutPage(), AboutPage(), AboutPage()];
   void _incrementCounter() {
     setState(() {
       // This call to setState tells the Flutter framework that something has
@@ -77,10 +78,10 @@ class _MyHomePageState extends State<MyHomePage> {
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
-      body: Center(
+      body: Row(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
-        child: Column(
+        children: <Widget>[
           // Column is also a layout widget. It takes a list of children and
           // arranges them vertically. By default, it sizes itself to fit its
           // children horizontally, and tries to be as tall as its parent.
@@ -95,23 +96,55 @@ class _MyHomePageState extends State<MyHomePage> {
           // center the children vertically; the main axis here is the vertical
           // axis because Columns are vertical (the cross axis would be
           // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
+          NavigationRail(
+            selectedIndex: _selectedIndex,
+            onDestinationSelected: (int index) {
+              setState(() {
+                _selectedIndex = index;
+                Widget _nextWidget = _pages[index];
+                _pushPage(context, _nextWidget);
+              });
+            },
+            labelType: NavigationRailLabelType.selected,
+            destinations: [
+              NavigationRailDestination(
+                icon: Icon(Icons.favorite_border),
+                selectedIcon: Icon(Icons.favorite),
+                label: Text('About'),
+              ),
+              NavigationRailDestination(
+                icon: Icon(Icons.bookmark_border),
+                selectedIcon: Icon(Icons.book),
+                label: Text('Quotes'),
+              ),
+              NavigationRailDestination(
+                icon: Icon(Icons.star_border),
+                selectedIcon: Icon(Icons.star),
+                label: Text('Contact'),
+              ),
+            ],
+          ),
+          VerticalDivider(thickness: 1, width: 1),
+          Text(
+            'You have pushed the button this many times:',
+          ),
+          Text(
+            '$_counter',
+            style: Theme.of(context).textTheme.headline4,
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+  // pushs page to the right destination
+  void _pushPage(BuildContext context, Widget page) {
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(builder: (_) => page),
     );
   }
 }
