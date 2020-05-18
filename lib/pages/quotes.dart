@@ -62,7 +62,8 @@ class _QuotePageState extends State<QuotePage> {
   }
 
   Widget _makeQuote(Quote data) {
-    String quote = data.value;
+    var quote = new Runes(data.value);
+    String quoteString = new String.fromCharCodes(quote);
     String createdAt = data.createdAt;
     return Card(
         child: new Container(
@@ -72,7 +73,7 @@ class _QuotePageState extends State<QuotePage> {
                 Icons.mode_comment,
                 size: 56.0,
               ),
-              title: Text(quote),
+              title: Text(quoteString),
               subtitle: Text(createdAt),
               trailing: Icon(Icons.more_vert),
             )));
@@ -106,7 +107,7 @@ class _QuotePageState extends State<QuotePage> {
             futureQuote = fetchQuote();
           });
         },
-        child: Icon(Icons.navigation),
+        child: Icon(Icons.refresh),
         backgroundColor: Colors.blue,
       ),
     );
