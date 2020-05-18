@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './about.dart';
+import './transitions/SlideRightRoute.dart';
 
 void main() {
   runApp(MyApp());
@@ -146,7 +147,7 @@ class _MyHomePageState extends State<MyHomePage> {
   // pushs page to the right destination
   void _pushPage(BuildContext context, Widget page) {
     Navigator.of(context).push(
-      MaterialPageRoute<void>(builder: (_) => page),
+      SlideRightRoute(page: page),
     );
   }
 }
