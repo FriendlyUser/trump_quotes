@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './pages/about.dart';
+import './pages/quotes.dart';
 import './transitions/SlideRightRoute.dart';
 
 void main() {
