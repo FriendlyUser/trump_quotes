@@ -26,3 +26,8 @@ sudo chown -R stude flutter
 Fastlane is used to upload the files to the google play store.
 
 git tag -a v0.1.0 -m "initial commit with fastlane"
+
+Flutter path command
+```
+export PATH="$PATH:`pwd`/flutter/bin"
+```

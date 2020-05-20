@@ -12,6 +12,9 @@ env:
     KEY_PROPERTIES: ${{ secrets.KEY_PROPERTIES }}
     TRUMP_QUOTES_JKS: ${{ secrets.TRUMP_QUOTES_JKS }}
     OCR_SERVER: ${{ secrets.OCR_SERVER }}
+    EMAIL: davidli012345@gmail.com
+    ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+    USERNAME: FriendlyUser
     
 jobs:
   build:
@@ -37,6 +40,8 @@ jobs:
     - run: echo $KEY_PROPERTIES | base64 --decode > android/key.properties
       name: Decoding Key Properties
     - run: echo $OCR_SERVER | base64 --decode > android/ocr-server-238704-1b08ee48b859.json
+    - run: echo ::set-env name=REPOSITORY_NAME::$(echo "$GITHUB_REPOSITORY" | awk -F / '{print $2}' | sed -e "s/:refs//")
+      shell: bash
     # Get flutter dependencies.
     - run: flutter pub get
     
@@ -59,8 +64,7 @@ jobs:
       with:
         name: release-apk
         path: build/app/outputs/apk/release/app-release.apk
-
-      # Fastlane
+    # Fastlane
     - uses: maierj/fastlane-action@v1.4.0
       with:
         lane: test
@@ -76,4 +80,19 @@ jobs:
       if: endsWith(github.ref, '/master')
       with:
         lane: deploy
-        subdirectory: 'android'
+        subdirectory: 'android'  
+    # Web Build
+    - run: flutter channel beta
+    - run: flutter config --enable-web
+    # Deploy to github actions
+    - run: flutter build web --release
+    - run: | 
+        git config --global user.email $EMAIL
+        git config --global user.name $USERNAME
+        git status
+    - name: Deploy 🚀
+      uses: JamesIves/github-pages-deploy-action@releases/v3
+      with:
+        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        BRANCH: gh-pages # The branch the action should deploy to.
+        FOLDER: build/web # The folder the action should deploy.
