@@ -55,6 +55,7 @@ platform :android do
       pubspec_location: "../pubspec.yaml",
     )
     puts version_info
+    version_code = version_info["version_code"]
     upload_to_play_store(
       track: 'beta',
       track_promote_to: 'production',
