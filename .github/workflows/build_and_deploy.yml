@@ -2,12 +2,19 @@ name: Trump Quotes
 
 # This workflow is triggered on pushes to the repository.
 
+
+# Git workflow is based on develop/master
+# All feature branches are merged into develop and then merging
+# into master auto deploys
 on: push
     
 env:
     KEY_PROPERTIES: ${{ secrets.KEY_PROPERTIES }}
     TRUMP_QUOTES_JKS: ${{ secrets.TRUMP_QUOTES_JKS }}
-    OCR_SERVER: ${{ secrets.OCR_SERVER }} 
+    OCR_SERVER: ${{ secrets.OCR_SERVER }}
+    EMAIL: davidli012345@gmail.com
+    ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+    USERNAME: FriendlyUser
     
 jobs:
   build:
@@ -24,14 +31,17 @@ jobs:
     # Setup the flutter environment.
     - uses: subosito/flutter-action@v1
       with:
-        channel: 'beta' # 'dev', 'alpha', default to: 'stable'
+        channel: 'stable' # 'dev', 'alpha', default to: 'stable'
         # flutter-version: '1.12.x' # you can also specify exact version of flutter
+
     # load the files from base64 encoded secrets
     - run: echo $TRUMP_QUOTES_JKS | base64 --decode > android/app/trump_quotes.jks
       name: Decoding Trump Quotes File
     - run: echo $KEY_PROPERTIES | base64 --decode > android/key.properties
       name: Decoding Key Properties
     - run: echo $OCR_SERVER | base64 --decode > android/ocr-server-238704-1b08ee48b859.json
+    - run: echo ::set-env name=REPOSITORY_NAME::$(echo "$GITHUB_REPOSITORY" | awk -F / '{print $2}' | sed -e "s/:refs//")
+      shell: bash
     # Get flutter dependencies.
     - run: flutter pub get
     
@@ -54,9 +64,35 @@ jobs:
       with:
         name: release-apk
         path: build/app/outputs/apk/release/app-release.apk
-
-      # Fastlane
+    # Fastlane
     - uses: maierj/fastlane-action@v1.4.0
       with:
-        lane: 'beta'
+        lane: test
         subdirectory: 'android'
+
+    - uses: maierj/fastlane-action@v1.4.0
+      if: endsWith(github.ref, '/develop')
+      with:
+        lane: beta
+        subdirectory: 'android'
+
+    - uses: maierj/fastlane-action@v1.4.0
+      if: endsWith(github.ref, '/master')
+      with:
+        lane: deploy
+        subdirectory: 'android'  
+    # Web Build
+    - run: flutter channel beta
+    - run: flutter config --enable-web
+    # Deploy to github actions
+    - run: flutter build web --release
+    - run: | 
+        git config --global user.email $EMAIL
+        git config --global user.name $USERNAME
+        git status
+    - name: Deploy 🚀
+      uses: JamesIves/github-pages-deploy-action@releases/v3
+      with:
+        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        BRANCH: gh-pages # The branch the action should deploy to.
+        FOLDER: build/web # The folder the action should deploy.
