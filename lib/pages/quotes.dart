@@ -5,7 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 Future<Quote> fetchQuote() async {
-  final response = await http.get('https://api.tronalddump.io/random/quote', {'Content-Type': 'application/json'});
+  final response = await http.get('https://api.tronalddump.io/random/quote', headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+  });
 
   if (response.statusCode == 200) {
     // If the server did return a 200 OK response,
