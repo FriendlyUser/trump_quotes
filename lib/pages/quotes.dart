@@ -26,7 +26,7 @@ class Quote {
   final String createdAt;
   final String quoteId;
   final String updatedAt;
-  final List<Dynamic> tags;
+  final List<synamic> tags;
   final String value;
 
   Quote(
