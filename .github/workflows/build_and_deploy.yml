@@ -56,6 +56,8 @@ jobs:
     
     # Build apk.
     - run: flutter build apk
+    # Build debug apk
+    - run: flutter build apk --debug
     
     # Build appbundle
     - run: flutter build appbundle
