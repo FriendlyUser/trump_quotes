@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import './pages/about.dart';
 import './pages/quotes.dart';
 import './transitions/SlideRightRoute.dart';
@@ -56,6 +57,9 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   int _selectedIndex = 0;
   List<Widget> _pages = [AboutPage(), QuotePage(), AboutPage()];
+
+  final String dogUrl = 'https://www.svgrepo.com/show/2046/dog.svg';
+  final String dogFoodUrl = 'https://www.svgrepo.com/show/3682/dog-food.svg';
   void _incrementCounter() {
     setState(() {
       // This call to setState tells the Flutter framework that something has
@@ -128,13 +132,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ],
           ),
           VerticalDivider(thickness: 1, width: 1),
-          Text(
-            'You have pushed the button this many times:',
-          ),
-          Text(
-            '$_counter',
-            style: Theme.of(context).textTheme.headline4,
-          ),
+          SvgPicture.asset("images/doughnut.svg"),
         ],
       ),
       floatingActionButton: FloatingActionButton(
