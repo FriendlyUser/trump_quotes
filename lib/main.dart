@@ -57,8 +57,6 @@ class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
   List<Widget> _pages = [AboutPage(), QuotePage(), AboutPage()];
 
-  final String dogUrl = 'https://www.svgrepo.com/show/2046/dog.svg';
-  final String dogFoodUrl = 'https://www.svgrepo.com/show/3682/dog-food.svg';
   void _incrementCounter() {
     setState(() {
       // This call to setState tells the Flutter framework that something has
@@ -130,7 +128,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ],
           ),
           VerticalDivider(thickness: 1, width: 1),
-          SvgPicture.asset("images/doughnut.svg"),
+          SvgPicture.asset("images/trump-cartoon.svg"),
         ],
       ),
       floatingActionButton: FloatingActionButton(
