@@ -37,7 +37,12 @@ platform :android do
     # Tests if the version code retrieved from the pubspec.yaml matches
     version_code = version_info["version_code"]
     # Adjust the `build_type` and `flavor` params as needed to build the right APK for your setup
-    upload_to_play_store(track: 'beta', version_code: version_code)
+    upload_to_play_store(
+      track: 'beta',
+      version_code: version_code,
+      aab: '../build/app/outputs/bundle/release/app-release.aab',
+      apk: '../build/app/outputs/apk/release/app-release.apk'
+    )
 
     # ...
   end
@@ -59,7 +64,9 @@ platform :android do
     upload_to_play_store(
       track: 'beta',
       track_promote_to: 'production',
-      version_code: version_code
+      version_code: version_code,
+      aab: '../build/app/outputs/bundle/release/app-release.aab',
+      apk: '../build/app/outputs/apk/release/app-release.apk'
     )
   end
 end
