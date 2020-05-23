@@ -103,7 +103,7 @@ class _TrumpLogoState extends State<TrumpLogo> with SingleTickerProviderStateMix
 
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
-  List<Widget> _pages = [AboutPage(), QuotePage(), AboutPage()];
+  List<Widget> _pages = [AboutPage(), QuotePage(), QuotePage()];
 
   void _incrementCounter() {
     setState(() {
@@ -179,7 +179,11 @@ class _MyHomePageState extends State<MyHomePage> {
           TrumpLogo(),
           Expanded(
             child: Text('Find the greatest quotes just before the 2020 election.'),
-          )
+          ),
+          RaisedButton(
+              child: const Text('Get Random Quote'),
+              onPressed: () => _pushPage(context, QuotePage()),
+          ),
         ],
       ),
       floatingActionButton: FloatingActionButton(
