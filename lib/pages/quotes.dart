@@ -5,7 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 Future<Quote> fetchQuote() async {
-  final response = await http.get('https://api.tronalddump.io/random/quote');
+  final response = await http.get('https://api.tronalddump.io/random/quote', headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+  });
 
   if (response.statusCode == 200) {
     // If the server did return a 200 OK response,
@@ -23,7 +26,7 @@ class Quote {
   final String createdAt;
   final String quoteId;
   final String updatedAt;
-  final List<String> tags;
+  final List<dynamic> tags;
   final String value;
 
   Quote(
