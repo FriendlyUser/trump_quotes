@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Trump Quotes'),
     );
   }
 }
@@ -53,9 +53,57 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
+
+
+// #docregion AnimatedLogo
+class AnimatedLogo extends AnimatedWidget {
+  AnimatedLogo({Key key, Animation<double> animation})
+      : super(key: key, listenable: animation);
+
+  Widget build(BuildContext context) {
+    final animation = listenable as Animation<double>;
+    return Center(
+      child: Container(
+        margin: EdgeInsets.symmetric(vertical: 10),
+        height: animation.value,
+        width: animation.value,
+        child: SvgPicture.asset("images/trump-cartoon.svg"),
+      ),
+    );
+  }
+}
+// #enddocregion AnimatedLogo
+
+class TrumpLogo extends StatefulWidget {
+  _TrumpLogoState createState() => _TrumpLogoState();
+}
+
+class _TrumpLogoState extends State<TrumpLogo> with SingleTickerProviderStateMixin {
+  Animation<double> animation;
+  AnimationController controller;
+
+  @override
+  void initState() {
+    super.initState();
+    controller =
+        AnimationController(duration: const Duration(seconds: 2), vsync: this);
+    animation = Tween<double>(begin: 0, end: 300).animate(controller);
+    controller.forward();
+  }
+
+  @override
+  Widget build(BuildContext context) => AnimatedLogo(animation: animation);
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+}
+
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
-  List<Widget> _pages = [AboutPage(), QuotePage(), AboutPage()];
+  List<Widget> _pages = [AboutPage(), QuotePage(), QuotePage()];
 
   void _incrementCounter() {
     setState(() {
@@ -128,7 +176,14 @@ class _MyHomePageState extends State<MyHomePage> {
             ],
           ),
           VerticalDivider(thickness: 1, width: 1),
-          SvgPicture.asset("images/trump-cartoon.svg"),
+          TrumpLogo(),
+          Expanded(
+            child: Text('Find the greatest quotes just before the 2020 election.'),
+          ),
+          RaisedButton(
+              child: const Text('Get Random Quote'),
+              onPressed: () => _pushPage(context, QuotePage()),
+          ),
         ],
       ),
       floatingActionButton: FloatingActionButton(
