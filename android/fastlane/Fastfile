@@ -40,8 +40,7 @@ platform :android do
     upload_to_play_store(
       track: 'beta',
       version_code: version_code,
-      aab: '../build/app/outputs/bundle/release/app-release.aab',
-      apk: '../build/app/outputs/apk/release/app-release.apk'
+      aab: '../build/app/outputs/bundle/release/app-release.aab'
     )
 
     # ...
@@ -65,8 +64,7 @@ platform :android do
       track: 'beta',
       track_promote_to: 'production',
       version_code: version_code,
-      aab: '../build/app/outputs/bundle/release/app-release.aab',
-      apk: '../build/app/outputs/apk/release/app-release.apk'
+      aab: "../build/app/outputs/bundle/release/app-release.aab"
     )
   end
 end
