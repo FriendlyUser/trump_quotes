@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Trump Quotes'),
     );
   }
 }
@@ -177,6 +177,9 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           VerticalDivider(thickness: 1, width: 1),
           TrumpLogo(),
+          Expanded(
+            child: Text('Find the greatest quotes just before the 2020 election.'),
+          )
         ],
       ),
       floatingActionButton: FloatingActionButton(
