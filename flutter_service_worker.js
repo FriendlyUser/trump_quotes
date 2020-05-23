@@ -1,12 +1,13 @@
 'use strict';
 const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
-  "main.dart.js": "156d5d89c770bb1a2e651ed3c9501b4d",
+  "main.dart.js": "243f9608e3041ff7764168217530a721",
 "assets/fonts/MaterialIcons-Regular.ttf": "56d3ffdef7a25659eab6a68a3fbfaf16",
-"assets/FontManifest.json": "01700ba55b08a6141f33e168c4a6c22f",
-"assets/LICENSE": "203057085e4dcdbe6418ec8e4646f2d3",
+"assets/FontManifest.json": "f7161631e25fbd47f3180eae84053a51",
+"assets/LICENSE": "4426731c49e93bbddd9b2298e8b2c21b",
+"assets/images/trump-cartoon.svg": "9e5aa4cff72c0846efda836463206c0f",
 "assets/packages/cupertino_icons/assets/CupertinoIcons.ttf": "115e937bb829a890521f72d2e664b632",
-"assets/AssetManifest.json": "2efbb41d7877d10aac9d091f58ccd7b9",
+"assets/AssetManifest.json": "bddc20e7f0ce03e8781803e0b714c890",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
 "manifest.json": "720e6fdb170d19d6f8bb6de043796253",
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
