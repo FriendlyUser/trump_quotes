@@ -39,7 +39,6 @@ platform :android do
     # Adjust the `build_type` and `flavor` params as needed to build the right APK for your setup
     upload_to_play_store(
       track: 'beta',
-      version_code: version_name,
       aab: '../build/app/outputs/bundle/release/app-release.aab'
     )
 
@@ -63,7 +62,6 @@ platform :android do
     upload_to_play_store(
       track: 'beta',
       track_promote_to: 'production',
-      version_code: version_name,
       aab: "../build/app/outputs/bundle/release/app-release.aab"
     )
   end
