@@ -6,8 +6,8 @@ import 'package:http/http.dart' as http;
 
 Future<Quote> fetchQuote() async {
   final response = await http.get('https://api.tronalddump.io/random/quote', headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
+      'Content-Type': 'application/json; charset=utf-8',
+      'Accept': 'application/json; charset=utf-8'
   });
 
   if (response.statusCode == 200) {
@@ -44,7 +44,8 @@ class Quote {
         quoteId: json['quoteId'],
         updatedAt: json['updated_at'],
         tags: json['tags'],
-        value: json['value']);
+        value: json['value']
+    );
   }
 }
 
@@ -65,8 +66,7 @@ class _QuotePageState extends State<QuotePage> {
   }
 
   Widget _makeQuote(Quote data) {
-    var quote = new Runes(data.value);
-    String quoteString = new String.fromCharCodes(quote);
+    var quote = data.value;
     String createdAt = data.createdAt;
     return Card(
         child: new Container(
@@ -76,7 +76,7 @@ class _QuotePageState extends State<QuotePage> {
                 Icons.mode_comment,
                 size: 56.0,
               ),
-              title: Text(quoteString),
+              title: Text(quote),
               subtitle: Text(createdAt),
               trailing: Icon(Icons.more_vert),
             )));
