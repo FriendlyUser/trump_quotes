@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 Future<Quote> fetchQuote() async {
   final response = await http.get('https://api.tronalddump.io/random/quote', headers: {
       'Content-Type': 'application/json; charset=utf-8',
-      'Accept': 'application/json'
+      'Accept': 'application/json; charset=utf-8'
   });
 
   if (response.statusCode == 200) {
@@ -44,7 +44,8 @@ class Quote {
         quoteId: json['quoteId'],
         updatedAt: json['updated_at'],
         tags: json['tags'],
-        value: json['value']);
+        value: json['value']
+    );
   }
 }
 
