@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import './pages/about.dart';
+import './pages/aboutApp.dart';
 import './pages/quotes.dart';
 import './transitions/SlideRightRoute.dart';
 
@@ -103,7 +104,7 @@ class _TrumpLogoState extends State<TrumpLogo> with SingleTickerProviderStateMix
 
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
-  List<Widget> _pages = [AboutPage(), QuotePage(), QuotePage()];
+  List<Widget> _pages = [AboutPage(), QuotePage(), AboutAppPage()];
 
   void _incrementCounter() {
     setState(() {
