@@ -7914,7 +7914,7 @@ EY:function(){var t=0,s=P.a5(u.ko),r,q,p,o,n
 var $async$EY=P.a1(function(a,b){if(a===1)return P.a2(b,s)
 while(true)switch(t){case 0:o=u.N
 t=3
-return P.aj(G.a9h("https://api.tronalddump.io/random/quote",P.bn(["Content-Type","application/json; charset=utf-8","Accept","application/json"],o,o)),$async$EY)
+return P.aj(G.a9h("https://api.tronalddump.io/random/quote",P.bn(["Content-Type","application/json; charset=utf-8","Accept","application/json; charset=utf-8"],o,o)),$async$EY)
 case 3:n=b
 if(n.b===200){o=C.b5.d4(0,B.a9b(U.a7C(n.e).c.a.i(0,"charset")).d4(0,n.x))
 q=J.a7(o)
