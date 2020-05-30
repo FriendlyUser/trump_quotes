@@ -74,6 +74,21 @@ jobs:
       with:
         name: app-bundle
         path: build/app/outputs/bundle/release/app-release.aab
+    # Web Build
+    - run: flutter channel beta
+    - run: flutter config --enable-web
+    # Deploy to github actions
+    - run: flutter build web --release
+    - run: | 
+        git config --global user.email $EMAIL
+        git config --global user.name $USERNAME
+        git status
+    - name: Deploy 🚀
+      uses: JamesIves/github-pages-deploy-action@releases/v3
+      with:
+        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        BRANCH: gh-pages # The branch the action should deploy to.
+        FOLDER: build/web # The folder the action should deploy.
     # Fastlane
     - uses: maierj/fastlane-action@v1.4.0
       with:
@@ -91,18 +106,3 @@ jobs:
       with:
         lane: deploy
         subdirectory: 'android'  
-    # Web Build
-    - run: flutter channel beta
-    - run: flutter config --enable-web
-    # Deploy to github actions
-    - run: flutter build web --release
-    - run: | 
-        git config --global user.email $EMAIL
-        git config --global user.name $USERNAME
-        git status
-    - name: Deploy 🚀
-      uses: JamesIves/github-pages-deploy-action@releases/v3
-      with:
-        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        BRANCH: gh-pages # The branch the action should deploy to.
-        FOLDER: build/web # The folder the action should deploy.
