@@ -31,10 +31,7 @@ class AboutAppPage extends StatelessWidget {
             ),
             applicationName: 'Trump Quotes',
             applicationVersion: '1.1.1',
-            applicationLegalese: '© 2020 Grandfleet',
-            aboutBoxChildren: [
-              ///Content goes here...
-            ],
+            applicationLegalese: '© 2020 Grandfleet'
           );
         },
         child: Icon(Icons.navigation),
