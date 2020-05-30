@@ -90,10 +90,11 @@ jobs:
         BRANCH: gh-pages # The branch the action should deploy to.
         FOLDER: build/web # The folder the action should deploy.
     # Fastlane
-    - uses: maierj/fastlane-action@v1.4.0
-      with:
-        lane: test
-        subdirectory: 'android'
+    # This doesn't work on channel beta
+    # - uses: maierj/fastlane-action@v1.4.0
+    #   with:
+    #     lane: test
+    #     subdirectory: 'android'
 
     - uses: maierj/fastlane-action@v1.4.0
       if: endsWith(github.ref, '/develop')
