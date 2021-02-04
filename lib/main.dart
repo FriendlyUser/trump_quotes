@@ -54,12 +54,9 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-
-
 // #docregion AnimatedLogo
 class AnimatedLogo extends AnimatedWidget {
-  AnimatedLogo({Key key, Animation<double> animation})
-      : super(key: key, listenable: animation);
+  AnimatedLogo({Key key, Animation<double> animation}) : super(key: key, listenable: animation);
 
   Widget build(BuildContext context) {
     final animation = listenable as Animation<double>;
@@ -86,8 +83,7 @@ class _TrumpLogoState extends State<TrumpLogo> with SingleTickerProviderStateMix
   @override
   void initState() {
     super.initState();
-    controller =
-        AnimationController(duration: const Duration(seconds: 2), vsync: this);
+    controller = AnimationController(duration: const Duration(seconds: 2), vsync: this);
     animation = Tween<double>(begin: 0, end: 300).animate(controller);
     controller.forward();
   }
@@ -104,7 +100,11 @@ class _TrumpLogoState extends State<TrumpLogo> with SingleTickerProviderStateMix
 
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
-  List<Widget> _pages = [AboutPage(), QuotePage(), AboutAppPage()];
+  List<Widget> _pages = [
+    AboutPage(),
+    QuotePage(),
+    AboutAppPage()
+  ];
 
   void _incrementCounter() {
     setState(() {
@@ -182,8 +182,8 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Text('Find the greatest quotes just before the 2020 election.'),
           ),
           RaisedButton(
-              child: const Text('Get Random Quote'),
-              onPressed: () => _pushPage(context, QuotePage()),
+            child: const Text('Get Random Quote'),
+            onPressed: () => _pushPage(context, QuotePage()),
           ),
         ],
       ),
