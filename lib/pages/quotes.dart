@@ -56,6 +56,22 @@ class _QuotePageState extends State<QuotePage> {
   Widget _makeQuote(Quote data) {
     var quote = data.value;
     String createdAt = data.createdAt;
+    if (!kisWeb) {
+      return Card(
+          child: new Container(
+              padding: new EdgeInsets.all(32.0),
+              child: ListTile(
+                  leading: Icon(
+                    Icons.mode_comment,
+                    size: 56.0,
+                  ),
+                  title: Text(quote),
+                  subtitle: Text(createdAt),
+                  trailing: Icon(Icons.more_vert),
+                  onTap: () => {
+                        SocialShare.shareOptions(quote)
+                      })));
+    }
     return Card(
         child: new Container(
             padding: new EdgeInsets.all(32.0),
@@ -67,12 +83,7 @@ class _QuotePageState extends State<QuotePage> {
                 title: Text(quote),
                 subtitle: Text(createdAt),
                 trailing: Icon(Icons.more_vert),
-                onTap: () => {
-                      if (!kisWeb)
-                        {
-                          SocialShare.shareOptions(quote)
-                        }
-                    })));
+                onTap: () => {})));
   }
 
   @override
