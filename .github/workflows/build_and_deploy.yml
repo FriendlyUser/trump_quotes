@@ -98,17 +98,17 @@ jobs:
     #     lane: test
     #     subdirectory: 'android'
 #     - run:  bundle install
-      
+    - uses: actions/setup-ruby@v1
+      with:
+        ruby-version: '2.7.2'
     - uses: maierj/fastlane-action@v2.0.1
       if: endsWith(github.ref, '/develop')
       with:
         lane: beta
         subdirectory: 'android'
-        ruby-version: '2.7.2'
 
     - uses: maierj/fastlane-action@v2.0.1
       if: endsWith(github.ref, '/master')
       with:
         lane: deploy
-        subdirectory: 'android'  
-        ruby-version: '2.7.2'  
+        subdirectory: 'android' 
