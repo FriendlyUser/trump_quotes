@@ -22,7 +22,7 @@ class AboutPage extends StatelessWidget {
             ),
             applicationName: 'Trump Quotes',
             applicationVersion: '1.1.1',
-            applicationLegalese: '© 2020 Grandfleet'
+            applicationLegalese: '© 2021 Grandfleet'
           );
         },
         child: Icon(Icons.navigation),

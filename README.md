@@ -1,6 +1,6 @@
 # trump_quotes
 
-A new Flutter project.
+A new Flutter project that uses is suppose to illustrate the best quotes from donald trump.
 
 ## Getting Started
 
