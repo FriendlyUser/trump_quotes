@@ -46,7 +46,6 @@ class QuotePage extends StatefulWidget {
 
 class _QuotePageState extends State<QuotePage> {
   Future<Quote> futureQuote;
-
   @override
   void initState() {
     super.initState();
@@ -56,7 +55,7 @@ class _QuotePageState extends State<QuotePage> {
   Widget _makeQuote(Quote data) {
     var quote = data.value;
     String createdAt = data.createdAt;
-    if (!kisWeb) {
+    if (!kIsWeb) {
       return Card(
           child: new Container(
               padding: new EdgeInsets.all(32.0),
