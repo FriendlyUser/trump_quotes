@@ -98,13 +98,13 @@ jobs:
     #     lane: test
     #     subdirectory: 'android'
 
-    - uses: maierj/fastlane-action@v1.4.0
+    - uses: maierj/fastlane-action@v2.0.1
       if: endsWith(github.ref, '/develop')
       with:
         lane: beta
         subdirectory: 'android'
 
-    - uses: maierj/fastlane-action@v1.4.0
+    - uses: maierj/fastlane-action@v2.0.1
       if: endsWith(github.ref, '/master')
       with:
         lane: deploy
