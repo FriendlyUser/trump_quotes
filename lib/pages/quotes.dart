@@ -1,13 +1,14 @@
 import 'dart:async';
 import 'dart:convert';
-
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:social_share/social_share.dart';
 
 Future<Quote> fetchQuote() async {
   final response = await http.get('https://api.tronalddump.io/random/quote', headers: {
-      'Content-Type': 'application/json; charset=utf-8',
-      'Accept': 'application/json; charset=utf-8'
+    'Content-Type': 'application/json; charset=utf-8',
+    'Accept': 'application/json; charset=utf-8'
   });
 
   if (response.statusCode == 200) {
@@ -29,23 +30,10 @@ class Quote {
   final List<dynamic> tags;
   final String value;
 
-  Quote(
-      {this.appearedAt,
-      this.createdAt,
-      this.quoteId,
-      this.updatedAt,
-      this.tags,
-      this.value});
+  Quote({this.appearedAt, this.createdAt, this.quoteId, this.updatedAt, this.tags, this.value});
 
   factory Quote.fromJson(Map<String, dynamic> json) {
-    return Quote(
-        appearedAt: json['appeared_at'],
-        createdAt: json['created_at'],
-        quoteId: json['quoteId'],
-        updatedAt: json['updated_at'],
-        tags: json['tags'],
-        value: json['value']
-    );
+    return Quote(appearedAt: json['appeared_at'], createdAt: json['created_at'], quoteId: json['quoteId'], updatedAt: json['updated_at'], tags: json['tags'], value: json['value']);
   }
 }
 
@@ -58,7 +46,6 @@ class QuotePage extends StatefulWidget {
 
 class _QuotePageState extends State<QuotePage> {
   Future<Quote> futureQuote;
-
   @override
   void initState() {
     super.initState();
@@ -68,18 +55,34 @@ class _QuotePageState extends State<QuotePage> {
   Widget _makeQuote(Quote data) {
     var quote = data.value;
     String createdAt = data.createdAt;
+    if (!kIsWeb) {
+      return Card(
+          child: new Container(
+              padding: new EdgeInsets.all(32.0),
+              child: ListTile(
+                  leading: Icon(
+                    Icons.mode_comment,
+                    size: 56.0,
+                  ),
+                  title: Text(quote),
+                  subtitle: Text(createdAt),
+                  trailing: Icon(Icons.more_vert),
+                  onTap: () => {
+                        SocialShare.shareOptions(quote)
+                      })));
+    }
     return Card(
         child: new Container(
             padding: new EdgeInsets.all(32.0),
             child: ListTile(
-              leading: Icon(
-                Icons.mode_comment,
-                size: 56.0,
-              ),
-              title: Text(quote),
-              subtitle: Text(createdAt),
-              trailing: Icon(Icons.more_vert),
-            )));
+                leading: Icon(
+                  Icons.mode_comment,
+                  size: 56.0,
+                ),
+                title: Text(quote),
+                subtitle: Text(createdAt),
+                trailing: Icon(Icons.more_vert),
+                onTap: () => {})));
   }
 
   @override
