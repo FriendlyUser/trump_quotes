@@ -103,9 +103,11 @@ jobs:
       with:
         lane: beta
         subdirectory: 'android'
+        ruby-version: '2.7'  
 
     - uses: maierj/fastlane-action@v2.0.1
       if: endsWith(github.ref, '/master')
       with:
         lane: deploy
         subdirectory: 'android'  
+        ruby-version: '2.7'  
