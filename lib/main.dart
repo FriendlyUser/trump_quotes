@@ -4,7 +4,7 @@ import './pages/about.dart';
 import './pages/aboutApp.dart';
 import './pages/quotes.dart';
 import './transitions/SlideRightRoute.dart';
-
+import 'package:flutter/foundation.dart' show kIsWeb;
 void main() {
   runApp(MyApp());
 }
@@ -60,12 +60,22 @@ class AnimatedLogo extends AnimatedWidget {
 
   Widget build(BuildContext context) {
     final animation = listenable as Animation<double>;
+    if (kIsWeb) {
+      return Center(
+        child: Container(
+          margin: EdgeInsets.symmetric(vertical: 10),
+          height: animation.value,
+          width: animation.value,
+          child: SvgPicture.asset("images/trump-cartoon.svg"),
+        ),
+      );
+    }
     return Center(
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 10),
         height: animation.value,
         width: animation.value,
-        child: SvgPicture.asset("images/trump-cartoon.svg"),
+        child: Image.asset("images/trump-cartoon.png"),
       ),
     );
   }
