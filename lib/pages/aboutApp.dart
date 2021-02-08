@@ -13,7 +13,7 @@ class AboutAppPage extends StatelessWidget {
         child: Text('Trump Quotes'),
         applicationIcon: Icon(Icons.local_play),
         applicationName: 'Trump Quotes',
-        applicationVersion: '1.1.2',
+        applicationVersion: '1.1.4',
         applicationLegalese: '© 2021 Grandfleet',
         aboutBoxChildren: [
           ///Content goes here...
@@ -30,7 +30,7 @@ class AboutAppPage extends StatelessWidget {
               color: Theme.of(context).accentColor,
             ),
             applicationName: 'Trump Quotes',
-            applicationVersion: '1.1.2',
+            applicationVersion: '1.1.4',
             applicationLegalese: '© 2021 Grandfleet'
           );
         },
