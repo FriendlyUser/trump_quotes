@@ -187,14 +187,18 @@ class _MyHomePageState extends State<MyHomePage> {
             ],
           ),
           VerticalDivider(thickness: 1, width: 1),
-          TrumpLogo(),
-          Expanded(
-            child: Text('Find the greatest quotes just before the 2020 election.'),
-          ),
-          RaisedButton(
-            child: const Text('Get Random Quote'),
-            onPressed: () => _pushPage(context, QuotePage()),
-          ),
+          Column(
+            children: <Widget>[
+              TrumpLogo(),
+              Flexible(
+                child: Text('Find the greatest quotes just before the 2020 election.'),
+              ),
+              RaisedButton(
+                child: const Text('Get Random Quote'),
+                onPressed: () => _pushPage(context, QuotePage()),
+              ),
+            ]
+          )
         ],
       ),
       floatingActionButton: FloatingActionButton(
