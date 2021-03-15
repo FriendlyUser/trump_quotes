@@ -3,18 +3,19 @@ const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
-  "assets/NOTICES": "489fdb491fb78a37da9b7064ca2922f1",
-"assets/FontManifest.json": "7b2a36307916a9721811788013e65289",
-"assets/images/trump-cartoon.svg": "9e5aa4cff72c0846efda836463206c0f",
-"assets/AssetManifest.json": "6d65d5f124f78b29fa5f5b76f5738b5b",
-"assets/fonts/MaterialIcons-Regular.otf": "1288c9e28052e028aba623321f7826ac",
-"index.html": "92534e4e7ad9a0d6b387a021b76cc488",
-"/": "92534e4e7ad9a0d6b387a021b76cc488",
-"main.dart.js": "343fe43676abb4bd48e94e307a2968d0",
-"icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
+  "manifest.json": "720e6fdb170d19d6f8bb6de043796253",
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
-"manifest.json": "720e6fdb170d19d6f8bb6de043796253",
-"version.json": "5311005de24dec0dd0e57d4df0d3af94",
+"icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
+"assets/NOTICES": "6e0d97cf5e66995540e25d7750c6b667",
+"assets/fonts/MaterialIcons-Regular.otf": "1288c9e28052e028aba623321f7826ac",
+"assets/images/trump-cartoon.png": "523ee0162c2f0e12e66b1cd6c9277f28",
+"assets/images/trump-cartoon.svg": "9e5aa4cff72c0846efda836463206c0f",
+"assets/AssetManifest.json": "94c613dcb05c6dd96948501bda05ee2c",
+"assets/FontManifest.json": "7b2a36307916a9721811788013e65289",
+"index.html": "bc4575104e5e014383a8fb0c166abf8d",
+"/": "bc4575104e5e014383a8fb0c166abf8d",
+"main.dart.js": "c86ae8624140e23c576cf24670870c90",
+"version.json": "d1a22cc2508c8ef07ba6d1e3f2911af0",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796"
 };
 
@@ -33,7 +34,7 @@ self.addEventListener("install", (event) => {
   return event.waitUntil(
     caches.open(TEMP).then((cache) => {
       return cache.addAll(
-        CORE.map((value) => new Request(value + '?revision=' + RESOURCES[value], {'cache': 'reload'})));
+        CORE.map((value) => new Request(value, {'cache': 'reload'})));
     })
   );
 });
@@ -159,7 +160,7 @@ async function downloadOffline() {
     }
     currentContent[key] = true;
   }
-  for (var resourceKey in Object.keys(RESOURCES)) {
+  for (var resourceKey of Object.keys(RESOURCES)) {
     if (!currentContent[resourceKey]) {
       resources.push(resourceKey);
     }
