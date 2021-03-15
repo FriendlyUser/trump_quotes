@@ -55,6 +55,7 @@ class _QuotePageState extends State<QuotePage> {
   Widget _makeQuote(Quote data) {
     var quote = data.value;
     String createdAt = data.createdAt;
+    String appearedAt = data.appearedAt;
     if (!kIsWeb) {
       return Card(
           child: new Container(
@@ -65,7 +66,7 @@ class _QuotePageState extends State<QuotePage> {
                     size: 56.0,
                   ),
                   title: Text(quote),
-                  subtitle: Text(createdAt),
+                  subtitle: Text(appearedAt),
                   trailing: Icon(Icons.more_vert),
                   onTap: () => {
                         SocialShare.shareOptions(quote)
@@ -80,7 +81,7 @@ class _QuotePageState extends State<QuotePage> {
                   size: 56.0,
                 ),
                 title: Text(quote),
-                subtitle: Text(createdAt),
+                subtitle: Text(appearedAt),
                 trailing: Icon(Icons.more_vert),
                 onTap: () => {})));
   }

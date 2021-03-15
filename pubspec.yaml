@@ -24,7 +24,7 @@ dependencies:
   flutter:
     sdk: flutter
   http: ^0.12.1
-  flutter_svg: ^0.18.0
+  flutter_svg: ^0.19.3
   social_share: ^2.0.5
 
 

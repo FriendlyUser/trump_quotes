@@ -5,6 +5,7 @@ import './pages/aboutApp.dart';
 import './pages/quotes.dart';
 import './transitions/SlideRightRoute.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
+
 void main() {
   runApp(MyApp());
 }
@@ -56,7 +57,8 @@ class MyHomePage extends StatefulWidget {
 
 // #docregion AnimatedLogo
 class AnimatedLogo extends AnimatedWidget {
-  AnimatedLogo({Key key, Animation<double> animation}) : super(key: key, listenable: animation);
+  AnimatedLogo({Key key, Animation<double> animation})
+      : super(key: key, listenable: animation);
 
   Widget build(BuildContext context) {
     final animation = listenable as Animation<double>;
@@ -86,14 +88,16 @@ class TrumpLogo extends StatefulWidget {
   _TrumpLogoState createState() => _TrumpLogoState();
 }
 
-class _TrumpLogoState extends State<TrumpLogo> with SingleTickerProviderStateMixin {
+class _TrumpLogoState extends State<TrumpLogo>
+    with SingleTickerProviderStateMixin {
   Animation<double> animation;
   AnimationController controller;
 
   @override
   void initState() {
     super.initState();
-    controller = AnimationController(duration: const Duration(seconds: 2), vsync: this);
+    controller =
+        AnimationController(duration: const Duration(seconds: 2), vsync: this);
     animation = Tween<double>(begin: 0, end: 300).animate(controller);
     controller.forward();
   }
@@ -110,11 +114,7 @@ class _TrumpLogoState extends State<TrumpLogo> with SingleTickerProviderStateMix
 
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
-  List<Widget> _pages = [
-    AboutPage(),
-    QuotePage(),
-    AboutAppPage()
-  ];
+  List<Widget> _pages = [AboutPage(), QuotePage(), AboutAppPage()];
 
   void _incrementCounter() {
     setState(() {
@@ -187,18 +187,26 @@ class _MyHomePageState extends State<MyHomePage> {
             ],
           ),
           VerticalDivider(thickness: 1, width: 1),
-          Column(
-            children: <Widget>[
-              TrumpLogo(),
-              Flexible(
-                child: Text('Find the greatest quotes just before the 2020 election.'),
-              ),
-              RaisedButton(
-                child: const Text('Get Random Quote'),
-                onPressed: () => _pushPage(context, QuotePage()),
-              ),
-            ]
-          )
+          Expanded(
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                TrumpLogo(),
+                Padding(
+                    padding: EdgeInsets.all(1.0),
+                    child: (
+                      Text(
+                        "With trump's twitter down, the dates are out of sync.",
+                        style: TextStyle(fontWeight: FontWeight.bold)))),
+                Padding(
+                  padding: EdgeInsets.only(bottom: 10.0),
+                  child: (
+                  ElevatedButton(
+                    child: const Text('Get Random Quote'),
+                    onPressed: () => _pushPage(context, QuotePage()),
+                  ))),
+              ]))
         ],
       ),
       floatingActionButton: FloatingActionButton(

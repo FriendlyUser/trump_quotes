@@ -31,3 +31,9 @@ Flutter path command
 ```
 export PATH="$PATH:`pwd`/flutter/bin"
 ```
+
+## To Run
+
+To run on web is
+
+flutter run -d chrome
