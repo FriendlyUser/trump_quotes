@@ -50,23 +50,19 @@ jobs:
     - name: Doctor
       # Run doctor, for ease of debugging any issues.
       run: flutter doctor -v
-    - name: Build testbed debug	
+    - name: Build app debug	
       run: |	
         flutter packages get
         flutter build -v ${{matrix.TARGET}} --debug	
-      working-directory: ${{ github.workspace }}	
-    - name: Build testbed release	
+    - name: Build app release	
       run: |	
         flutter packages get	
         flutter build -v ${{matrix.TARGET}} --release	
-      working-directory: ${{ github.workspace }}
-    - name: Build file_selector implementations debug	
+    - name: Build app implementations debug	
       run: |	
         flutter packages get
         flutter build -v ${{matrix.TARGET}} --debug	
-      working-directory: ${{ github.workspace }}
-    - name: Build file_selector implementations release	
+    - name: Build app implementations release	
       run: |	
         flutter packages get	
         flutter build -v ${{matrix.TARGET}} --release	
-      working-directory: ${{ github.workspace }}
