@@ -28,8 +28,6 @@ jobs:
       run: flutter config --enable-windows-desktop	
     - name: Build example debug	
       run: |
-        ls
-        ls app
         ls app/windows
         flutter packages get	
         flutter build -v windows --debug	
