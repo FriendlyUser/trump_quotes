@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import '../api/fetch.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class TagPage extends StatefulWidget {
   // constructor
