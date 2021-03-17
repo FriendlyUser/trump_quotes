@@ -20,8 +20,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2	
-      with:
-        path: app
     - uses: actions/checkout@v2	
       with:	
         path: flutter
@@ -56,19 +54,19 @@ jobs:
       run: |	
         flutter packages get
         flutter build -v ${{matrix.TARGET}} --debug	
-      working-directory: ${{ github.workspace }}/app	
+      working-directory: ${{ github.workspace }}	
     - name: Build testbed release	
       run: |	
         flutter packages get	
         flutter build -v ${{matrix.TARGET}} --release	
-      working-directory: ${{ github.workspace }}/app
+      working-directory: ${{ github.workspace }}
     - name: Build file_selector implementations debug	
       run: |	
         flutter packages get
         flutter build -v ${{matrix.TARGET}} --debug	
-      working-directory: ${{ github.workspace }}/app
+      working-directory: ${{ github.workspace }}
     - name: Build file_selector implementations release	
       run: |	
         flutter packages get	
         flutter build -v ${{matrix.TARGET}} --release	
-      working-directory: ${{ github.workspace }}/fde/plugins/file_selector/example
+      working-directory: ${{ github.workspace }}
