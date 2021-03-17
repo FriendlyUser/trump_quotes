@@ -7,10 +7,10 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macOS-10.15, windows-2019, ubuntu-18.04]
+        os: [windows-2019, ubuntu-18.04]
         include: 
-        - os: macOS-10.15
-          TARGET: macos  
+#         - os: macOS-10.15
+#           TARGET: macos  
         - os: ubuntu-18.04
           TARGET: linux     
         - os: windows-2019
@@ -45,7 +45,6 @@ jobs:
     - name: Enable desktop support	
       run: |
         flutter config --enable-linux-desktop	
-        flutter config --enable-macos-desktop	
         flutter config --enable-windows-desktop	
     - name: Doctor
       # Run doctor, for ease of debugging any issues.
@@ -54,6 +53,14 @@ jobs:
       run: |	
         flutter packages get
         flutter build -v ${{matrix.TARGET}} --debug	
+        
+    - name: Archive production artifacts
+      uses: actions/upload-artifact@v2
+      with:
+         name: build artifacts
+         path: |
+            trump_quotes/trump_quotes/build
+            trump_quotes/build
     - name: Build app release	
       run: |	
         flutter packages get	
