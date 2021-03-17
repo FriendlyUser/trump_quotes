@@ -45,4 +45,3 @@ app.*.map.json
 *.jks
 
 flutter_files
-flutter
