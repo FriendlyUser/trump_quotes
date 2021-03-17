@@ -1,41 +1,9 @@
 import 'dart:async';
-import 'dart:convert';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
+import '../api/fetch.dart';
 import 'package:social_share/social_share.dart';
 
-Future<Quote> fetchQuote() async {
-  final response = await http.get('https://api.tronalddump.io/random/quote', headers: {
-    'Content-Type': 'application/json; charset=utf-8',
-    'Accept': 'application/json; charset=utf-8'
-  });
-
-  if (response.statusCode == 200) {
-    // If the server did return a 200 OK response,
-    // then parse the JSON.
-    return Quote.fromJson(json.decode(response.body));
-  } else {
-    // If the server did not return a 200 OK response,
-    // then throw an exception.
-    throw Exception('Failed to load quote');
-  }
-}
-
-class Quote {
-  final String appearedAt;
-  final String createdAt;
-  final String quoteId;
-  final String updatedAt;
-  final List<dynamic> tags;
-  final String value;
-
-  Quote({this.appearedAt, this.createdAt, this.quoteId, this.updatedAt, this.tags, this.value});
-
-  factory Quote.fromJson(Map<String, dynamic> json) {
-    return Quote(appearedAt: json['appeared_at'], createdAt: json['created_at'], quoteId: json['quoteId'], updatedAt: json['updated_at'], tags: json['tags'], value: json['value']);
-  }
-}
 
 class QuotePage extends StatefulWidget {
   // constructor
@@ -54,7 +22,6 @@ class _QuotePageState extends State<QuotePage> {
 
   Widget _makeQuote(Quote data) {
     var quote = data.value;
-    String createdAt = data.createdAt;
     String appearedAt = data.appearedAt;
     if (!kIsWeb) {
       return Card(

@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import './pages/about.dart';
 import './pages/aboutApp.dart';
 import './pages/quotes.dart';
+import './pages/tags.dart';
 import './transitions/SlideRightRoute.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 
@@ -114,7 +115,7 @@ class _TrumpLogoState extends State<TrumpLogo>
 
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
-  List<Widget> _pages = [AboutPage(), QuotePage(), AboutAppPage()];
+  List<Widget> _pages = [AboutPage(), QuotePage(), AboutAppPage(), TagPage()];
 
   void _incrementCounter() {
     setState(() {
@@ -183,6 +184,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 icon: Icon(Icons.star_border),
                 selectedIcon: Icon(Icons.star),
                 label: Text('Contact'),
+              ),
+              NavigationRailDestination(
+                icon: Icon(Icons.tab),
+                selectedIcon: Icon(Icons.tab_outlined),
+                label: Text('Tags'),
               ),
             ],
           ),
