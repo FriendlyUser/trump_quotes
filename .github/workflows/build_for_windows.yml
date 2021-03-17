@@ -28,7 +28,7 @@ jobs:
       run: flutter config --enable-windows-desktop	
     - name: Build example debug	
       run: |
-        ls app/windows
+        ls windows
         flutter packages get	
         flutter build -v windows --debug	
       working-directory: ${{ github.workspace }}/app
