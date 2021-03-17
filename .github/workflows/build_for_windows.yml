@@ -9,8 +9,6 @@ jobs:
 
     steps:	
     - uses: actions/checkout@v2	
-      with:
-        path: app
     - uses: actions/checkout@v2	
       with:
         path: flutter
@@ -28,8 +26,6 @@ jobs:
       run: flutter config --enable-windows-desktop	
     - name: Build example debug	
       run: |
-        ls app/windows
-        cd app
         flutter packages get	
         flutter build -v windows --debug	
     - name: Build example release	
