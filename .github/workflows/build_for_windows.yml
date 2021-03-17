@@ -61,7 +61,8 @@ jobs:
          path: |
             trump_quotes/trump_quotes/build
             trump_quotes/build
-             D:\a\trump_quotes\trump_quotes\trump_quotes\build
+            D:\a\trump_quotes\trump_quotes\trump_quotes\build
+            D:\a\trump_quotes\trump_quotes\trump_quotes\build\*
     - name: Build app release	
       run: |	
         flutter packages get	
