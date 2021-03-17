@@ -10,7 +10,7 @@ jobs:
     steps:	
     - uses: actions/checkout@v2	
       with:
-        path: trump_quotes
+        path: app
     - uses: actions/checkout@v2	
       with:
         path: flutter
@@ -27,10 +27,13 @@ jobs:
     - name: Enable desktop support	
       run: flutter config --enable-windows-desktop	
     - name: Build example debug	
-      run: |	
+      run: |
+        ls
+        ls app
+        ls app/windows
         flutter packages get	
         flutter build -v windows --debug	
-      working-directory: ${{ github.workspace }}/trump_quotes
+      working-directory: ${{ github.workspace }}/app
     - name: Build example release	
       run: |	
         flutter packages get	
