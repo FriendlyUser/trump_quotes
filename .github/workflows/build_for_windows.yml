@@ -64,10 +64,6 @@ jobs:
       with:
          name: build artifacts
          path: |
-            trump_quotes/trump_quotes/build
-            trump_quotes/build
-            D:\a\trump_quotes\trump_quotes\trump_quotes\build
-            D:\a\trump_quotes\trump_quotes\trump_quotes\build\*
             D:/a/trump_quotes/trump_quotes/build/windows/runner/Release/
             D:/a/trump_quotes/trump_quotes/build/windows/runner/Debug/
             
