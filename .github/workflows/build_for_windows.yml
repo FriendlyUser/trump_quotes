@@ -54,6 +54,11 @@ jobs:
         flutter packages get
         flutter build -v ${{matrix.TARGET}} --debug	
         
+    - name: Build app release	
+      run: |	
+        flutter packages get	
+        flutter build -v ${{matrix.TARGET}} --release	
+  
     - name: Archive production artifacts
       uses: actions/upload-artifact@v2
       with:
@@ -63,10 +68,9 @@ jobs:
             trump_quotes/build
             D:\a\trump_quotes\trump_quotes\trump_quotes\build
             D:\a\trump_quotes\trump_quotes\trump_quotes\build\*
-    - name: Build app release	
-      run: |	
-        flutter packages get	
-        flutter build -v ${{matrix.TARGET}} --release	
+            D:/a/trump_quotes/trump_quotes/build/windows/runner/Release/
+            D:/a/trump_quotes/trump_quotes/build/windows/runner/Debug/
+            
     - name: Build app implementations debug	
       run: |	
         flutter packages get
