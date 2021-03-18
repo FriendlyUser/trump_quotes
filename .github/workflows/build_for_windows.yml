@@ -65,7 +65,7 @@ jobs:
          name: build artifacts
          path: |
             D:/a/trump_quotes/trump_quotes/build/windows/runner/Release/
-            D:/a/trump_quotes/trump_quotes/build/windows/runner/Debug/
+            /home/runner/work/trump_quotes/trump_quotes/build/linux
             
     - name: Build app implementations debug	
       run: |	
