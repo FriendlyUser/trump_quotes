@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:social_share/social_share.dart';
+import 'package:flutter/services.dart';
 
 Future<Quote> fetchQuote() async {
   final response = await http.get('https://api.tronalddump.io/random/quote', headers: {
@@ -68,8 +69,10 @@ class _QuotePageState extends State<QuotePage> {
                   title: Text(quote),
                   subtitle: Text(appearedAt),
                   trailing: Icon(Icons.more_vert),
-                  onTap: () => {
-                        SocialShare.shareOptions(quote)
+                  onTap: () => async {
+                     await Clipboard.setData(ClipboardData(text: data.value)).then((_){
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Quote copied to clipboard")));
+                      });
                       })));
     }
     return Card(
@@ -83,7 +86,11 @@ class _QuotePageState extends State<QuotePage> {
                 title: Text(quote),
                 subtitle: Text(appearedAt),
                 trailing: Icon(Icons.more_vert),
-                onTap: () => {})));
+                onTap: () => async {
+                   await Clipboard.setData(ClipboardData(text: data.value)).then((_){
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Quote copied to clipboard")));
+                    });
+                })));
   }
 
   @override
