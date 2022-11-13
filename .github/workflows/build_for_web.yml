@@ -16,7 +16,7 @@ jobs:
           channel: 'dev'
       - run: flutter config --enable-web
       - run: flutter pub get
-      - run: flutter build web --release
+      - run: flutter build web --release --base-href "/trump_quotes/"
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.0
         with:
