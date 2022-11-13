@@ -6,7 +6,8 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart';
 
 Future<Quote> fetchQuote() async {
-  final response = await http.get('https://api.tronalddump.io/random/quote', headers: {
+  final response =
+      await http.get('https://api.tronalddump.io/random/quote', headers: {
     'Content-Type': 'application/json; charset=utf-8',
     'Accept': 'application/json; charset=utf-8'
   });
@@ -30,10 +31,22 @@ class Quote {
   final List<dynamic> tags;
   final String value;
 
-  Quote({this.appearedAt, this.createdAt, this.quoteId, this.updatedAt, this.tags, this.value});
+  Quote(
+      {this.appearedAt,
+      this.createdAt,
+      this.quoteId,
+      this.updatedAt,
+      this.tags,
+      this.value});
 
   factory Quote.fromJson(Map<String, dynamic> json) {
-    return Quote(appearedAt: json['appeared_at'], createdAt: json['created_at'], quoteId: json['quoteId'], updatedAt: json['updated_at'], tags: json['tags'], value: json['value']);
+    return Quote(
+        appearedAt: json['appeared_at'],
+        createdAt: json['created_at'],
+        quoteId: json['quoteId'],
+        updatedAt: json['updated_at'],
+        tags: json['tags'],
+        value: json['value']);
   }
 }
 
@@ -69,10 +82,12 @@ class _QuotePageState extends State<QuotePage> {
                   subtitle: Text(appearedAt),
                   trailing: Icon(Icons.more_vert),
                   onTap: () => {
-                     Clipboard.setData(ClipboardData(text: data.value)).then((_){
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Quote copied to clipboard")));
-                      })
-                  })));
+                        Clipboard.setData(ClipboardData(text: data.value))
+                            .then((_) {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content: Text("Quote copied to clipboard")));
+                        })
+                      })));
     }
     return Card(
         child: new Container(
@@ -86,10 +101,12 @@ class _QuotePageState extends State<QuotePage> {
                 subtitle: Text(appearedAt),
                 trailing: Icon(Icons.more_vert),
                 onTap: () => {
-                   Clipboard.setData(ClipboardData(text: data.value)).then((_){
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Quote copied to clipboard")));
-                    })
-                })));
+                      Clipboard.setData(ClipboardData(text: data.value))
+                          .then((_) {
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text("Quote copied to clipboard")));
+                      })
+                    })));
   }
 
   @override

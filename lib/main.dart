@@ -195,17 +195,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 TrumpLogo(),
                 Padding(
                     padding: EdgeInsets.all(1.0),
-                    child: (
-                      Text(
+                    child: (Text(
                         "With trump's twitter down, the dates are out of sync.",
                         style: TextStyle(fontWeight: FontWeight.bold)))),
                 Padding(
-                  padding: EdgeInsets.only(bottom: 10.0),
-                  child: (
-                  ElevatedButton(
-                    child: const Text('Get Random Quote'),
-                    onPressed: () => _pushPage(context, QuotePage()),
-                  ))),
+                    padding: EdgeInsets.only(bottom: 10.0),
+                    child: (ElevatedButton(
+                      child: const Text('Get Random Quote'),
+                      onPressed: () => _pushPage(context, QuotePage()),
+                    ))),
               ]))
         ],
       ),

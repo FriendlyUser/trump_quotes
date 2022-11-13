@@ -14,16 +14,15 @@ class AboutPage extends StatelessWidget {
         onPressed: () {
           // Add your onPressed code here!
           showAboutDialog(
-            context: context,
-            applicationIcon: Icon(
-              Icons.local_play,
-              size: 65,
-              color: Theme.of(context).accentColor,
-            ),
-            applicationName: 'Trump Quotes',
-            applicationVersion: '1.1.1',
-            applicationLegalese: '© 2021 Grandfleet'
-          );
+              context: context,
+              applicationIcon: Icon(
+                Icons.local_play,
+                size: 65,
+                color: Theme.of(context).accentColor,
+              ),
+              applicationName: 'Trump Quotes',
+              applicationVersion: '1.1.1',
+              applicationLegalese: '© 2021 Grandfleet');
         },
         child: Icon(Icons.navigation),
         backgroundColor: Colors.blue,
