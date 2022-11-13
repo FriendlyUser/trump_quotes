@@ -68,11 +68,11 @@ class _QuotePageState extends State<QuotePage> {
                   title: Text(quote),
                   subtitle: Text(appearedAt),
                   trailing: Icon(Icons.more_vert),
-                  onTap: () => async {
-                     await Clipboard.setData(ClipboardData(text: data.value)).then((_){
+                  onTap: () => {
+                     Clipboard.setData(ClipboardData(text: data.value)).then((_){
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Quote copied to clipboard")));
-                      });
-                      })));
+                      })
+                  })));
     }
     return Card(
         child: new Container(
@@ -85,10 +85,10 @@ class _QuotePageState extends State<QuotePage> {
                 title: Text(quote),
                 subtitle: Text(appearedAt),
                 trailing: Icon(Icons.more_vert),
-                onTap: () => async {
-                   await Clipboard.setData(ClipboardData(text: data.value)).then((_){
+                onTap: () => {
+                   Clipboard.setData(ClipboardData(text: data.value)).then((_){
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Quote copied to clipboard")));
-                    });
+                    })
                 })));
   }
 
